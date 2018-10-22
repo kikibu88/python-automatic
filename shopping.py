@@ -1,10 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+# 클래스 선언
 class ShoppingOnInternet():
     def __init__(self):
         self.browser = input("> Which browser do you want? ")
 
+    # WebDriver Browser 가져오기
     def get_browser(self):
         while True:
             if self.browser in ("i",):
@@ -22,6 +24,7 @@ class ShoppingOnInternet():
                 self.browser = input("다시")
                 continue
 
+    # G마켓 이동
     def invoke_browser(self):
         url = "http://www.gmarket.co.kr/"
         self.driver.get(url)
@@ -34,11 +37,14 @@ class ShoppingOnInternet():
             f.write('Not exect title in driver.title\n')
             f.close()
 
+    # 로그인 하기
     def login_to_homepage(self):
+        # 로그인 정보 입력
         id = "korbart"
         pw = "gmw22920"
         xpaths = {'id': "//input[@name='id']", 'pw':"//input[@name='pwd']"}
 
+        # < 로그인하기 >
         # 1. 로그인 창 열기
         self.driver.implicitly_wait(5)
         self.driver.find_element_by_id('css_login_box').click()
